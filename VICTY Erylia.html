@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erylia Victy-La Cendre Froide</title>
+<meta property="og:title" content="Fiche RP · Erylia Victy">
+<meta property="og:description" content="L'immortelle dragonne aux deux visages">
+<meta property="og:image" content="pp.jpg">
+<link rel="icon" type="image/jpeg" href="pp.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Spectral:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&family=Cinzel:wght@400;600;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --noir: #080808;
+  --charbon: #111010;
+  --cendre: #1a1717;
+  --braise: #8b1a1a;
+  --rouge: #c0392b;
+  --rouge-vif: #e74c3c;
+  --or: #b8860b;
+  --or-clair: #d4a017;
+  --or-pale: #e8c870;
+  --texte: #c8b89a;
+  --texte-clair: #e8dcc8;
+  --texte-pale: rgba(200,184,154,0.55);
+  --blanc-casse: #f0e8d8;
+  --accent: #c0392b;
+}
+
+html, body {
+  background: var(--noir);
+  font-family: 'Spectral', serif;
+  color: var(--texte);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-size: 21px;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.7;
+}
+
+#accueil {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  cursor: pointer;
+  overflow: hidden;
+  background: #040303;
+}
+
+#accueil video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.38) contrast(1.15) saturate(0.7) sepia(30%);
+}
+
+.accueil-brume {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(139,26,26,0.45) 0%, transparent 60%),
+    linear-gradient(to top, rgba(4,3,3,0.97) 0%, rgba(4,3,3,0.5) 40%, rgba(4,3,3,0.2) 70%, rgba(4,3,3,0.55) 100%);
+}
+
+.accueil-corps {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 80px;
+}
+
+.accueil-filet {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(192,57,43,0.6));
+  margin-bottom: 28px;
+}
+
+.accueil-surtitre {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.65em;
+  color: rgba(192,57,43,0.65);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.accueil-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--blanc-casse);
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+  text-align: center;
+  text-shadow: 0 0 80px rgba(139,26,26,0.6), 0 4px 40px rgba(0,0,0,0.8);
+  position: relative;
+}
+
+.accueil-nom em {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.55em;
+  color: var(--or-pale);
+  display: block;
+  letter-spacing: 0.04em;
+  margin-top: 6px;
+  text-shadow: 0 0 30px rgba(184,134,11,0.5);
+}
+
+.accueil-sous {
+  margin-top: 22px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.5em;
+  color: rgba(200,184,154,0.3);
+  text-transform: uppercase;
+  animation: pouls 3s ease-in-out infinite;
+}
+
+@keyframes pouls { 0%,100%{opacity:0.2} 55%{opacity:0.75} }
+
+#accueil.rideau { animation: monter 1s cubic-bezier(0.76,0,0.24,1) forwards; }
+@keyframes monter { to { transform: translateY(-100%); opacity: 0; } }
+
+#fiche {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 1fr;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease 0.85s;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 120%, rgba(100,12,12,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(80,8,8,0.35) 0%, transparent 50%),
+    #080808;
+}
+#fiche.visible { opacity: 1; pointer-events: all; }
+
+.sidebar {
+  grid-column: 1;
+  background: rgba(6,4,4,0.95);
+  border-right: 1px solid rgba(139,26,26,0.12);
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  position: relative;
+  z-index: 10;
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+.sidebar-header {
+  padding: 36px 24px 28px;
+  border-bottom: 1px solid rgba(139,26,26,0.1);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.sidebar-header:hover { background: rgba(139,26,26,0.05); }
+
+.sidebar-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--braise), transparent);
+}
+
+.sidebar-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texte-clair);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.sidebar-titre-perso {
+  font-family: 'Spectral', serif;
+  font-size: 0.65rem;
+  font-style: italic;
+  color: var(--braise);
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.nav-groupe {
+  margin-bottom: 6px;
+}
+
+.nav-groupe-titre {
+  font-family: 'Cinzel', serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.4em;
+  color: rgba(139,26,26,0.35);
+  text-transform: uppercase;
+  padding: 12px 24px 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 24px;
+  cursor: pointer;
+  font-family: 'Spectral', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--texte-pale);
+  transition: all 0.2s ease;
+  position: relative;
+  user-select: none;
+  border-left: 2px solid transparent;
+}
+
+.nav-item:hover {
+  color: var(--texte-clair);
+  background: rgba(139,26,26,0.05);
+}
+
+.nav-item.actif {
+  color: var(--texte-clair);
+  border-left-color: var(--rouge);
+  background: rgba(139,26,26,0.08);
+}
+
+.nav-item .nav-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.4rem;
+  letter-spacing: 0.1em;
+  color: rgba(139,26,26,0.35);
+  min-width: 20px;
+  transition: color 0.2s;
+}
+
+.nav-item.actif .nav-num { color: var(--rouge); }
+
+.sidebar-bas {
+  border-top: 1px solid rgba(139,26,26,0.1);
+  padding: 18px 24px;
+}
+
+.volume-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.3em;
+  color: rgba(139,26,26,0.4);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.volume-label svg { width: 12px; height: 12px; fill: rgba(139,26,26,0.4); }
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 1px;
+  background: rgba(139,26,26,0.2);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--braise);
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--braise);
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-credit {
+  margin-top: 12px;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.58rem;
+  font-style: italic;
+  color: rgba(200,184,154,0.2);
+  line-height: 1.7;
+}
+
+.contenu {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 550px 1fr 550px;
+  overflow: hidden;
+  position: relative;
+}
+
+.col-img {
+  position: relative;
+  overflow: hidden;
+  background: #050202;
+}
+
+.col-img-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: opacity 0.4s ease;
+}
+
+.col-img-inner > div {
+  flex: 1;
+  overflow: hidden;
+}
+
+.col-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: sepia(15%) contrast(1.05) brightness(0.8) saturate(0.9);
+  transition: filter 0.5s ease;
+}
+
+.col-img-inner img:hover {
+  filter: sepia(5%) contrast(1.1) brightness(1.0) saturate(1);
+}
+
+.col-fade-droite {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 40%, rgba(8,8,8,0.95) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.col-fade-gauche {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, transparent 40%, rgba(8,8,8,0.95) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.col-img::after {
+  content: '';
+  position: absolute;
+  top: 40px; bottom: 40px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(139,26,26,0.18), transparent);
+  z-index: 3;
+}
+
+#colGauche::after { right: 0; }
+#colDroite::after { left: 0; }
+
+.zone-centre {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 52px 48px 80px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139,26,26,0.18) transparent;
+  position: relative;
+}
+
+.zone-centre::-webkit-scrollbar { width: 2px; }
+.zone-centre::-webkit-scrollbar-thumb { background: rgba(139,26,26,0.25); }
+
+.page {
+  display: none;
+  animation: apparaitre 0.4s ease forwards;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page.active { display: block; }
+
+@keyframes apparaitre {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.en-tete {
+  margin-bottom: 48px;
+}
+
+.en-tete-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.5em;
+  color: var(--braise);
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.en-tete-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--blanc-casse);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.en-tete-sous {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.en-tete-filet {
+  height: 1px;
+  flex: 1;
+  max-width: 80px;
+  background: linear-gradient(to right, var(--braise), transparent);
+}
+
+.en-tete-detail {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--texte-pale);
+}
+
+.bloc {
+  margin-bottom: 40px;
+}
+
+.bloc-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--braise);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bloc-label::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: rgba(139,26,26,0.15);
+}
+
+.prose {
+  font-family: 'Spectral', serif;
+  font-size: 0.88rem;
+  line-height: 1.95;
+  color: var(--texte);
+  font-weight: 300;
+}
+
+.prose p { margin-bottom: 16px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose em { font-style: italic; color: var(--texte-clair); font-weight: 400; }
+
+.sep {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(139,26,26,0.15), transparent);
+  margin: 36px 0;
+}
+
+.magie-card {
+  margin-bottom: 20px;
+  padding: 22px 26px;
+  background: rgba(139,26,26,0.03);
+  border: 1px solid rgba(139,26,26,0.1);
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.magie-card:hover { border-color: rgba(139,26,26,0.22); }
+
+.magie-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--braise), transparent);
+}
+
+.magie-affinite {
+  font-family: 'Cinzel', serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.4em;
+  color: rgba(192,57,43,0.55);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.magie-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--texte-clair);
+  margin-bottom: 14px;
+  letter-spacing: 0.01em;
+}
+
+.magie-texte {
+  font-family: 'Spectral', serif;
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--texte);
+  font-weight: 300;
+}
+
+.citation {
+  margin-bottom: 28px;
+  padding: 20px 26px;
+  position: relative;
+}
+
+.citation::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--braise) 40%, transparent);
+}
+
+.citation-texte {
+  font-family: 'IM Fell English', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--texte-clair);
+  line-height: 1.85;
+}
+
+.citation-contexte {
+  margin-top: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.3em;
+  color: rgba(200,184,154,0.25);
+  text-transform: uppercase;
+}
+
+.race-item {
+  margin-bottom: 32px;
+}
+
+.race-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--or-pale);
+  margin-bottom: 10px;
+}
+
+.histoire-wrapper {
+  position: relative;
+  min-height: 70vh;
+  padding-bottom: 80px;
+}
+
+.flamme-wrapper {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  z-index: 20;
+  filter: drop-shadow(0 0 8px currentColor);
+  transition: filter 0.3s ease;
+}
+
+.flamme-wrapper:active { cursor: grabbing; }
+.flamme-wrapper:hover { filter: drop-shadow(0 0 16px currentColor) brightness(1.3); }
+
+#flammeOrange { bottom: 20px; left: 10px; color: #c45c00; }
+#flammeViolet { top: 20px; right: 10px; color: #7b2fa8; }
+
+.flamme-svg { width: 44px; height: 58px; display: block; }
+
+#page-secret {
+  display: none;
+  position: relative;
+  overflow: hidden;
+}
+
+#page-secret.active { display: block; }
+
+.tache {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(80,10,10,0.25), transparent 70%);
+  pointer-events: none;
+}
+
+.tache-1 { width: 220px; height: 100px; top: 80px; right: 40px; transform: rotate(12deg); }
+.tache-2 { width: 80px; height: 110px; bottom: 200px; left: 20px; transform: rotate(-6deg); }
+.tache-3 { width: 130px; height: 50px; top: 260px; right: 160px; transform: rotate(4deg); }
+
+.secret-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: rgba(160,40,40,0.75);
+  transform: rotate(-0.5deg) translateX(2px);
+}
+
+.secret-sous {
+  margin-top: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.45em;
+  color: rgba(107,15,15,0.4);
+  text-transform: uppercase;
+}
+
+.secret-sep { width: 40px; height: 1px; background: rgba(107,15,15,0.4); margin: 12px 0 40px; }
+
+.secret-texte {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.0rem;
+  font-style: italic;
+  color: rgba(190,150,150,0.72);
+  line-height: 2.1;
+  max-width: 600px;
+  position: relative;
+}
+
+.secret-texte p { margin-bottom: 24px; }
+.decale-1 { display: inline-block; transform: translateY(2px) rotate(0.3deg); }
+.decale-2 { display: inline-block; transform: translateY(-1px) rotate(-0.2deg); }
+.decale-3 { display: inline-block; transform: translateX(1px); }
+
+.secret-avert {
+  margin-top: 44px;
+  padding: 14px 20px;
+  border: 1px solid rgba(107,15,15,0.15);
+  font-family: 'Spectral', serif;
+  font-size: 0.72rem;
+  color: rgba(107,15,15,0.38);
+  line-height: 1.75;
+  max-width: 580px;
+  transform: rotate(0.2deg);
+}
+
+.coin {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 100;
+}
+.coin-tl { top: 12px; left: 232px; border-top: 1px solid var(--rouge); border-left: 1px solid var(--rouge); }
+.coin-tr { top: 12px; right: 12px; border-top: 1px solid var(--rouge); border-right: 1px solid var(--rouge); }
+.coin-bl { bottom: 12px; left: 232px; border-bottom: 1px solid var(--rouge); border-left: 1px solid var(--rouge); }
+.coin-br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--rouge); border-right: 1px solid var(--rouge); }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(139,26,26,0.2); }
+</style>
+</head>
+<body>
+
+<audio id="ambiance" loop><source src="ambiance.mp3" type="audio/mpeg"></audio>
+
+<div id="accueil" onclick="ouvrirFiche()">
+  <video autoplay muted loop playsinline>
+    <source src="reed.mp4" type="video/mp4">
+  </video>
+  <div class="accueil-brume"></div>
+  <div class="accueil-corps">
+    <div class="accueil-filet"></div>
+    <div class="accueil-surtitre">Starke - Fiche de personnage</div>
+    <div class="accueil-nom">
+      Erylia Victy
+      <em>La Cendre Froide</em>
+    </div>
+    <div class="accueil-sous">- Cliquer pour entrer -</div>
+  </div>
+</div>
+
+<div id="fiche">
+  <div class="coin coin-tl"></div><div class="coin coin-tr"></div>
+  <div class="coin coin-bl"></div><div class="coin coin-br"></div>
+
+  <nav class="sidebar">
+    <div class="sidebar-header" onclick="retourAccueil()">
+      <div class="sidebar-nom">Erylia Victy</div>
+      <div class="sidebar-titre-perso">Chef Avaaron · La Cendre Froide</div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-groupe">
+        <div class="nav-groupe-titre">Identité</div>
+        <div class="nav-item actif" onclick="afficherPage('identite',this)">
+          <span class="nav-num">01</span> Identité
+        </div>
+        <div class="nav-item" onclick="afficherPage('physique',this)">
+          <span class="nav-num">02</span> Physique
+        </div>
+        <div class="nav-item" onclick="afficherPage('psychologie',this)">
+          <span class="nav-num">03</span> Psychologie
+        </div>
+      </div>
+      <div class="nav-groupe">
+        <div class="nav-groupe-titre">Capacités</div>
+        <div class="nav-item" onclick="afficherPage('magie',this)">
+          <span class="nav-num">04</span> Magie & Combat
+        </div>
+      </div>
+      <div class="nav-groupe">
+        <div class="nav-groupe-titre">Personnage</div>
+        <div class="nav-item" onclick="afficherPage('personnalite',this)">
+          <span class="nav-num">05</span> Personnalité
+        </div>
+        <div class="nav-item" onclick="afficherPage('relations',this)">
+          <span class="nav-num">06</span> Vision des Races
+        </div>
+        <div class="nav-item" onclick="afficherPage('histoire',this)">
+          <span class="nav-num">07</span> Histoire
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-bas">
+      <div class="volume-label">
+        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        Ambiance
+      </div>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.18" oninput="setVolume(this.value)">
+      <div class="sidebar-credit">When Elegies Are Ashes<br>Arknights OST</div>
+    </div>
+  </nav>
+
+  <main class="contenu">
+
+    <div class="col-img" id="colGauche">
+      <div class="col-img-inner" id="imgsGauche"></div>
+      <div class="col-fade-droite"></div>
+    </div>
+
+    <div class="zone-centre">
+
+      <section class="page active" id="page-identite">
+        <div class="en-tete">
+          <div class="en-tete-num">01 / Identité</div>
+          <div class="en-tete-titre">Identité</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">Dragonoïde · Chef Avaaron · 1856 ans</div>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Nom de famille : VICTY</div>
+          <div class="prose"><p>Victy est un nom ancien, porté par sa lignée depuis des générations sans que personne n'en connaisse vraiment l'origine exacte. Certains prétendent qu'il vient d'un dialecte draconique aujourd'hui disparu, d'autres que c'est simplement le nom d'un ancêtre dont personne ne se souvient plus. Erylia ne s'y attache pas particulièrement. Les noms de famille sont des héritages qu'on ne choisit pas, et elle a toujours été quelqu'un qui préfère ce qu'on construit à ce qu'on reçoit. Ce qui compte, c'est ce qu'on fait du nom, pas ce qu'il était avant nous.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Prénom : Erylia</div>
+          <div class="prose"><p>Un prénom que sa mère lui a donné, dont l'étymologie se perd dans des dialectes draconiques aujourd'hui presque entièrement oubliés. Certains vieux textes militaires l'orthographient différemment, preuve que même son prénom a traversé les siècles en se déformant au passage. Elle ne s'en offusque pas. En service, on l'appelle Chef, ou rien du tout, et c'est largement suffisant à ses yeux. Le prénom, elle le réserve à ceux qui méritent de la connaître autrement qu'en uniforme.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Surnom · La Cendre Froide</div>
+          <div class="prose"><p>Le surnom est né sur un champ de bataille, il y a plusieurs siècles, dans les premières années qui suivirent le Cataclysme. Après une offensive particulièrement dévastatrice où elle avait réduit en cendres une vague entière de corrompus sans sourciller, sans trembler, sans même changer d'expression, un soldat avait murmuré dans son dos : <em>"Même le feu est froid, avec elle."</em> Les mots avaient fait le tour du camp en quelques heures. Le nom était resté. Elle ne l'a jamais ni revendiqué ni démenti, parce qu'au fond, elle sait qu'il dit quelque chose de vrai sur ce qu'elle est devenue au fil des années, et qu'il serait vain de prétendre le contraire.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Âge · 1856 ans</div>
+          <div class="prose"><p>1856 ans, c'est suffisamment long pour avoir vu mourir des gens qu'on aimait plusieurs fois. C'est suffisamment long pour avoir assisté à la chute de choses qu'on croyait éternelles, pour avoir appris à ne plus s'étonner de grand chose, et pour avoir compris une vérité que les jeunes soldats mettent des décennies à accepter : ce qui dure n'est pas ce qu'on protège le mieux, c'est ce qui a assez de racines pour survivre seul.</p></div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Sexe</div>
+          <div class="prose"><p>Dans un monde où les batailles se gagnent à la force brute et où les structures militaires ont été bâties par des mains qui, bien souvent, ne ressemblaient pas aux siennes, Erylia n'a jamais attendu qu'on lui ouvre les portes. Elle les a brûlées. Chaque grade, chaque responsabilité, chaque regard de respect arraché à des hommes qui pensaient savoir mieux qu'elle ce que valait une femme sur un champ de bataille, elle les a obtenus à la sueur et au feu, sans jamais demander de traitement particulier dans un sens comme dans l'autre. Être une femme ne l'a pas ralentie. Cela lui a simplement appris, très tôt, que personne ne lui donnerait rien, et que c'était finalement la meilleure leçon qu'on puisse recevoir.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Race · Dragonoïde</div>
+          <div class="prose"><p>Son héritage draconique est visible dans chaque détail, les cornes sombres, les écailles noires aux reflets rougeâtres, les yeux d'un bleu-vert profond et le feu qui lui vient comme une seconde nature, presque aussi instinctif que la respiration. Les Dragonoïdes vivent longtemps, voient des générations entières naître et mourir, et portent en eux quelque chose d'ancien que les autres races perçoivent sans toujours pouvoir le nommer. Erylia a depuis longtemps appris à ne pas laisser sa race définir ce qu'elle est. Elle est Dragonoïde comme d'autres sont gauchers, c'est un fait, pas une identité, et quiconque pense la réduire à ses écailles et à ses cornes comprend rapidement qu'il s'est trompé de personne.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Statut Social</div>
+          <div class="prose"><p>Elle n'est pas noble. Elle n'a jamais eu de terres, d'argent de famille, ni de nom suffisamment illustre pour ouvrir des portes sans frapper. Tout ce qu'elle possède, elle l'a gagné à la force de ce qu'elle est, grade après grade, bataille après bataille, dans un système qui ne lui faisait aucun cadeau. C'est précisément pour cette raison qu'elle ne le lâchera pas, et que ceux qui pensent avoir suffisamment de naissance ou de relations pour lui marcher dessus se retrouvent généralement à reconsidérer leur position assez rapidement.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Appartenance Politique</div>
+          <div class="prose"><p>Elle n'appartient à aucun parti, ne fait allégeance à aucune faction, ne se laisse convaincre par aucune idéologie qui ne soit pas directement liée à la survie d'Alogryph. Les jeux politiques l'ennuient profondément, non parce qu'elle en serait incapable, mais parce qu'elle a vu trop de gens perdre de vue l'essentiel à force de jouer aux échecs avec des vies humaines. Ceux qui essaient de la recruter pour leurs causes personnelles apprennent rapidement que c'est une perte de temps. Elle n'a qu'une seule question face à n'importe quelle décision : est-ce que ça aide le Bastion à tenir, oui ou non.</p></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Métier · Chef Avaaron</div>
+          <div class="prose"><p>Le poste le plus lourd qu'on puisse porter dans l'infanterie d'Alogryph. Elle commande des dizaines de milliers de soldats, siège aux conseils militaires aux côtés du Sénat et des autres ordres, signe des ordres qui coûtent des vies et prend des décisions que d'autres n'auraient pas le courage d'assumer. Elle le fait parce que quelqu'un doit le faire, et parce qu'elle est convaincue, peut-être à tort, peut-être pas, qu'elle le fait mieux que la plupart. Ce n'est pas de l'arrogance. C'est simplement qu'après plus de dix-huit cents ans, elle a appris à se connaître assez honnêtement pour savoir ce dont elle est capable.</p></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-physique">
+        <div class="en-tete">
+          <div class="en-tete-num">02 / Identité</div>
+          <div class="en-tete-titre">Physique</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">Portrait & apparence</div>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Description physique</div>
+          <div class="prose">
+            <p>Erylia est une femme à la silhouette élancée mais solide, construite par des siècles de combat sans jamais en porter la lourdeur de façon visible. Sa peau est pâle, d'un blanc légèrement chaud qui contraste avec la teinte sombre de ses cornes et de ses écailles. Ses cheveux sont d'un blond blanc, presque dorés sous certaines lumières, longs et souvent légèrement défaits comme si elle n'avait jamais vraiment pris le temps de s'en occuper autrement qu'en les attachant vaguement avant d'entrer en réunion.</p>
+            <p>Elle porte deux paires de cornes. La première paire prend naissance au sommet du crâne et se recourbe vers l'arrière en une courbe longue et sombre, élégante malgré leur taille imposante. La seconde paire est plus petite, positionnée au niveau des oreilles, avec une forme plus courte et légèrement recourbée vers l'extérieur. Les deux paires sont d'un noir profond aux reflets presque mats.</p>
+            <p>Sa queue est l'une des choses qu'on remarque souvent en second, après les cornes, mais dont on ne peut plus se détacher une fois qu'on l'a vue. Les écailles en sont noires, d'un noir dense et légèrement brillant, parcourues de reflets rougeâtres qui semblent presque vivants selon la lumière. Elle est longue, fine à son extrémité, et Erylia la contrôle avec une aisance qui trahit une familiarité totale.</p>
+            <p>Au centre de sa poitrine brille en permanence une étoile à quatre branches. Ce n'est pas un bijou, pas un ornement. C'est quelque chose de plus profond, d'inné, dont la luminosité varie selon son état. Intense et vive quand sa puissance magique est pleinement mobilisée, plus douce et stable au repos, presque imperceptible quand elle est épuisée ou blessée. Ceux qui la connaissent bien ont appris à lire cet indicateur mieux qu'elle ne le ferait elle-même, parce qu'Erylia est du genre à mentir sur sa fatigue.</p>
+            <p>Ses yeux sont d'un bleu-vert profond, la teinte exacte changeant légèrement selon la lumière, parfois plus froids et métalliques, parfois presque verdâtres. Ils sont calmes en toutes circonstances, ce qui les rend d'autant plus troublants. On n'y lit rien qu'elle ne veuille y mettre.</p>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Style vestimentaire</div>
+          <div class="prose">
+            <p>Erylia ne porte jamais la même tenue selon le contexte, et ce choix n'est pas anodin. Elle a appris très tôt que l'apparence est un outil comme un autre, et qu'on peut faire passer des messages sans ouvrir la bouche.</p>
+            <p>En combat, elle porte un pull noir ajusté, une veste en cuir blanc aux lignes nettes et fonctionnelles, et de longues bottes noires qui montent jusqu'aux cuisses. L'ensemble est sobre, pensé pour la mobilité avant l'esthétique, sans ornements inutiles. Elle a l'air de quelqu'un qui s'habille pour gagner, pas pour être regardée.</p>
+            <p>En contexte officiel, réunions militaires, conseils avec le Sénat, représentations formelles, elle endosse une longue robe blanche aux couches généreuses et travaillées, par-dessus laquelle elle porte une cape marron qui lui donne une stature encore plus imposante dans les grandes salles. Des collants noirs, des escarpins blancs au talon fin. Cette tenue est pensée pour occuper l'espace, pour rappeler sans le dire que même dans une pièce pleine de gens qui se croient importants, elle est celle qu'on regarde.</p>
+            <p>En dehors du travail, elle porte ce qu'elle a envie avec ce qu'elle a, sans protocole et sans qu'on puisse vraiment en tirer de conclusion sur qui elle est. Ce n'est pas de la négligence. C'est simplement que hors service, elle n'a plus rien à prouver à personne.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-psychologie">
+        <div class="en-tete">
+          <div class="en-tete-num">03 / Identité</div>
+          <div class="en-tete-titre">Psychologie</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">Portrait intérieur</div>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">En service</div>
+          <div class="prose">
+            <p>En uniforme, Erylia est une machine. Pas au sens froid et insensible du terme, mais au sens où elle a appris à couper tout ce qui n'est pas utile à la décision qu'elle doit prendre dans les dix secondes qui suivent. Elle parle peu, choisit ses mots avec une précision chirurgicale, et ne répète jamais deux fois la même chose. Ses ordres sont clairs, ses attentes sont élevées, et sa tolérance pour l'incompétence est proche de zéro. Elle n'a jamais eu besoin d'élever la voix pour être obéie, parce que quelque chose dans sa façon d'occuper l'espace suffit à faire comprendre qu'elle n'est pas du genre à formuler une demande deux fois.</p>
+            <p>Ce qui la distingue d'un commandant simplement cruel, c'est qu'elle ne prend jamais une décision difficile sans en avoir mesuré le poids. Envoyer des soldats à la mort ne lui fait pas baisser les yeux, mais ça ne lui glisse pas dessus non plus. Elle sait exactement ce que chaque ordre coûte, et c'est précisément pour ça qu'elle ne peut pas se permettre de le laisser paraître. Un commandant qui tremble devant ses propres décisions finit par contaminer ses troupes. Elle a choisi, il y a longtemps, de ne pas être ce commandant là.</p>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Hors service</div>
+          <div class="prose">
+            <p>Hors uniforme, quelque chose se dépose. Pas brutalement, pas comme un masque qu'on retire, mais progressivement, comme une tension qu'on relâche après des heures à la tenir. Erylia devient plus accessible, plus bavarde, capable d'une chaleur sincère que ses subordonnés auraient du mal à reconnaître. Elle pose des questions sur les gens qui l'entourent et les écoute vraiment, avec cette qualité d'attention rare qui fait sentir à l'autre qu'il est la seule personne dans la pièce. Elle rit facilement, d'un rire discret mais réel, et elle a un humour pince-sans-rire que ceux qui ne la connaissent pas ratent souvent.</p>
+            <p>Ce n'est pas de la comédie. C'est une nécessité. Après des heures, des jours, parfois des semaines à porter le poids de milliers de vies, de décisions impossibles et de responsabilités que personne d'autre ne viendra partager avec elle, elle a besoin de se rappeler qu'elle est aussi autre chose. Quelqu'un qui peut s'asseoir à une table, manger quelque chose de chaud, et parler de n'importe quoi sans que ça ait la moindre conséquence sur qui que ce soit.</p>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Ce que personne ne nomme</div>
+          <div class="prose">
+            <p>Il y a des moments, rares, presque imperceptibles, où quelque chose dans son regard change. Pas de façon dramatique. Juste une fraction de seconde où l'expression qui était là disparaît, remplacée par autre chose, quelque chose de plus froid, de plus patient, de plus calculateur que même son mode service habituel. Ça dure à peine le temps de le remarquer, et quand on essaie d'y revenir dans la conversation, elle répond normalement, comme si rien ne s'était passé.</p>
+            <p>Ses proches les plus attentifs ont appris à ne pas en parler. Pas parce qu'ils ont peur, mais parce qu'ils n'ont pas les mots pour décrire ce qu'ils ont vu, et qu'Erylia elle-même semble genuinement ne pas en avoir conscience. Comme si ces moments n'existaient que pour ceux qui les observaient, et s'effaçaient complètement de sa mémoire à elle.</p>
+            <p>Elle dort mal depuis un moment. Elle ne le dit à personne.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-magie">
+        <div class="en-tete">
+          <div class="en-tete-num">04 / Capacités</div>
+          <div class="en-tete-titre">Magie & Combat</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">Trois affinités · Lance de mage</div>
+          </div>
+        </div>
+
+        <div class="prose" style="margin-bottom:32px;"><p>Le rapport d'Erylia à la magie n'a jamais ressemblé à celui des autres mages. Là où la plupart apprennent à invoquer, à construire, à canaliser, elle a toujours eu l'impression de simplement laisser sortir ce qui avait toujours été là. Ses trois affinités ne sont pas des outils qu'elle a acquis. Ce sont des facettes de ce qu'elle est, inégales, imparfaites, et profondément siennes.</p></div>
+
+        <div class="magie-card">
+          <div class="magie-affinite">Première Affinité</div>
+          <div class="magie-nom">Feu</div>
+          <div class="magie-texte">Le feu est sa nature avant d'être sa magie. Là où la plupart des mages apprennent à invoquer leur élément, Erylia a eu l'impression toute sa vie de simplement le laisser sortir, comme si les flammes avaient toujours été là, juste en dessous de la surface, attendant qu'elle leur donne la permission. Sa maîtrise est exceptionnelle, non pas parce qu'elle a travaillé plus dur que les autres, mais parce que quelque chose dans son sang draconique parle au feu d'une façon que la technique seule ne peut pas reproduire. Elle peut façonner les flammes avec une précision chirurgicale ou les lâcher en vague dévastatrice selon les besoins du combat. Mais ce qui la distingue vraiment d'un mage de feu ordinaire, c'est sa relation intime avec l'élément. Les flammes ne lui font rien. Pas de brûlures, pas de douleur, pas même une sensation de chaleur excessive. Et en retour, elle peut s'en servir pour se régénérer, laisser les flammes parcourir ses blessures et refermer ce qu'elles trouvent.</div>
+        </div>
+
+        <div class="magie-card">
+          <div class="magie-affinite">Seconde Affinité</div>
+          <div class="magie-nom">Magie du Verbe</div>
+          <div class="magie-texte">Sa voix a toujours eu un poids particulier. Longtemps elle a cru que c'était simplement une question d'autorité acquise au fil des années. Ce n'est qu'après son éveil qu'elle a compris que quelque chose de plus profond était à l'œuvre. La magie du Verbe lui permet d'imprimer ses commandements d'un poids réel, presque physique. Un ordre donné avec intention ne se contente pas d'être entendu, il s'inscrit dans ceux qui le reçoivent, crée une impulsion, une clarté d'exécution qui dépasse la simple discipline militaire. Sur un champ de bataille, sa voix porte différemment des autres commandants, plus loin, plus nette, avec une qualité qui traverse le chaos et le bruit. Elle ancre une troupe qui commence à céder, redresse une ligne qui vacille, fait tenir des hommes épuisés quelques minutes de plus. Dans une guerre d'attrition comme celle qu'Alogryph mène en permanence, quelques minutes de plus peuvent tout changer.</div>
+        </div>
+
+        <div class="magie-card">
+          <div class="magie-affinite">Troisième Affinité</div>
+          <div class="magie-nom">Magie des Sens</div>
+          <div class="magie-texte">C'est sa magie la plus discrète, et celle qui demande le plus de précision. Elle peut manipuler les cinq sens, les amplifier ou les éteindre, soit sur elle-même soit sur quelqu'un qu'elle touche directement. En combat elle s'en sert avec méthode, aveugler un adversaire au moment décisif, aiguiser sa propre perception pour anticiper ce qui vient, couper sa douleur pour continuer à se battre sans que son corps la trahisse. Ce qu'elle utilise le plus souvent c'est la suppression de la douleur par contact, poser une main sur un blessé et lui acheter le temps dont il a besoin. C'est peut-être l'application la plus humaine qu'elle ait de cette magie, et la seule qui lui demande de s'arrêter, de toucher quelqu'un, de ralentir.</div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Combat à la lance</div>
+          <div class="prose">
+            <p>Erylia est une hybride presque parfaite entre mage et combattante, et c'est précisément ce qui la rend redoutable. Sa maîtrise du feu lui permet de tenir des adversaires à distance avec une puissance terrifiante, de contrôler l'espace autour d'elle, d'imposer ses conditions avant même que l'ennemi soit à portée. Elle pense en mage, elle combat en mage, et dans la grande majorité des affrontements ça suffit largement.</p>
+            <p>Mais elle n'a jamais eu l'illusion que ça suffirait toujours. Un mage qui ne peut exister qu'à distance est vulnérable dès que cette distance est franchie, et Erylia a appris cette leçon assez tôt pour ne jamais l'oublier. Elle a donc appris la lance, non pas par passion mais par nécessité, avec la même obstination méthodique qu'elle met dans tout ce qu'elle entreprend. Sa maîtrise est réelle, technique, construite sur des siècles de pratique, et quiconque s'attend à trouver une mage désarmée au corps à corps comprend rapidement son erreur.</p>
+            <p>Ce qu'elle ne peut pas changer en revanche, c'est sa force physique. Elle n'a pas la puissance brute d'un guerrier de race, pas la résistance aux chocs d'un combattant entraîné uniquement pour ça. Son corps reste celui d'une mage, avec la force physique d'un humain moyen. La lance compense la portée, la magie compense le reste, et c'est dans cet équilibre précis qu'elle a appris à être dangereuse.</p>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">L'arme</div>
+          <div class="prose"><p>Sa lance est aussi un bâton de mage, une arme hybride conçue sur mesure au fil de ses siècles de service et modifiée plusieurs fois pour s'adapter à ce qu'elle est devenue. Longue, lourde pour qui ne la connaît pas, parfaitement équilibrée pour elle. La lame porte des inscriptions que peu de gens peuvent lire, des formules de canalisation gravées dans le métal qui permettent au feu de la parcourir sans l'endommager. Elle peut passer d'une estocade à un sort en une fraction de seconde, sans transition, sans changement de posture. Elle ne s'en sépare jamais. Pas par sentimentalisme, mais parce que c'est une extension d'elle-même à ce stade.</p></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-personnalite">
+        <div class="en-tete">
+          <div class="en-tete-num">05 / Personnage</div>
+          <div class="en-tete-titre">Personnalité</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">Goûts · Aversions · Citations</div>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-label">Ce qu'elle aime</div>
+          <div class="prose">
+            <p>La musique est une des rares choses qui lui fait vraiment poser le poids qu'elle porte en permanence. Elle n'est pas musicienne, n'a jamais appris à jouer d'un instrument, mais elle écoute avec une attention que peu de gens lui connaissent au travail. N'importe quel style, n'importe quelle époque, du moment que c'est bien joué. Elle peut rester immobile un long moment à écouter quelqu'un jouer dans une rue d'Alogryph sans que ça la gêne le moins du monde.</p>
+            <p>La nourriture est une passion sincère et sans complexe. Elle mange bien, elle mange beaucoup, et elle a des avis très tranchés sur ce qui est bon et ce qui ne l'est pas. Un repas réussi est pour elle une des formes les plus simples et les plus honnêtes de bonheur. Après des décennies de rations militaires et de repas avalés debout entre deux réunions, elle considère qu'un bon repas assis est presque un acte de résistance.</p>
+            <p>La lecture est son espace le plus personnel. Elle lit de tout, des traités militaires anciens, de la fiction, de l'histoire, des textes philosophiques dont elle n'est pas toujours sûre de comprendre tous les niveaux. Elle a une mémoire exceptionnelle pour les textes et peut citer des passages lus des siècles plus tôt avec une précision qui surprend toujours ceux qui ne la connaissent pas sous cet angle.</p>
+            <p>Les jeux de stratégie, et les échecs en particulier, sont sa façon de se battre sans conséquence réelle. Elle joue depuis plus longtemps qu'elle ne s'en souvient, contre n'importe qui veut bien s'asseoir en face d'elle, et elle perd rarement.</p>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Ce qu'elle ne supporte pas</div>
+          <div class="prose"><p>La cuisine. Pas dans le sens où elle déteste l'idée, au contraire, elle adore manger et respecte profondément ceux qui savent cuisiner. Le problème c'est qu'elle est une catastrophe absolue dès qu'elle s'approche d'une cuisine avec des intentions culinaires. Quelque chose dans la combinaison de la précision requise, de la patience nécessaire et du fait que le feu lui obéit peut-être un peu trop bien transforme systématiquement ses tentatives en désastre. Elle a renoncé il y a longtemps à comprendre pourquoi.</p></div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Hobbies</div>
+          <div class="prose">
+            <p>Le shopping est une activité qu'elle pratique avec un sérieux et une méthodologie qui amuseraient ses subordonnés si jamais ils l'apprenaient. Elle sait exactement ce qu'elle cherche, elle prend le temps de le trouver, et elle n'achète que ce qui lui plaît vraiment sans se laisser influencer par quoi que ce soit d'autre.</p>
+            <p>Les sorties dans la nature sont sa façon de respirer. Alogryph est une cité dense, bruyante, chargée de responsabilités à chaque coin de rue, et la nature n'a aucune attente envers elle. Elle marche, parfois longtemps, parfois sans destination précise, et c'est dans ces moments là qu'elle ressemble le plus à quelqu'un qui n'est pas Chef Avaaron.</p>
+            <p>Les duels sont son plaisir coupable. Pas les combats de guerre, pas les entraînements militaires réglementés, mais les duels libres, consentis, contre quelqu'un qui veut vraiment se mesurer à elle. Elle aime l'adrénaline propre d'un combat sans enjeu réel, la façon dont ça la force à être entièrement présente sans penser à rien d'autre.</p>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="bloc-label">Ce qu'elle dit</div>
+          <div class="citation"><div class="citation-texte">"La peur est utile quand elle te fait courir plus vite. Elle devient un problème quand elle te fait courir dans la mauvaise direction. Apprends à faire la différence."</div><div class="citation-contexte">À un soldat avant une bataille</div></div>
+          <div class="citation"><div class="citation-texte">"Je commande une armée et je choisis mes propres repas. Les deux ne sont pas incompatibles. Laisse-moi tranquille."</div><div class="citation-contexte">Hors service</div></div>
+          <div class="citation"><div class="citation-texte">"Les excuses ne reconstruisent pas ce qui est tombé. Ce qui m'intéresse c'est ce que tu fais ensuite."</div><div class="citation-contexte">À un subordonné après une erreur</div></div>
+          <div class="citation"><div class="citation-texte">"Je me souviens de chaque visage que j'ai perdu. C'est la seule réponse honnête que je peux te donner."</div><div class="citation-contexte">À quelqu'un qui lui demande ce que ça fait de vivre aussi longtemps</div></div>
+          <div class="citation"><div class="citation-texte">"Je n'ai pas survécu mille huit-cent ans en attendant que les choses s'arrangent d'elles-mêmes."</div><div class="citation-contexte">—</div></div>
+          <div class="citation"><div class="citation-texte">"Mon esprit n'a jamais vraiment été en paix. Mais j'ai un devoir, et le devoir n'attend pas qu'on soit prêt. Alors j'avance."</div><div class="citation-contexte">—</div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-relations">
+        <div class="en-tete">
+          <div class="en-tete-num">06 / Personnage</div>
+          <div class="en-tete-titre">Vision des Races</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">Dix-huit siècles d'observation</div>
+          </div>
+        </div>
+
+        <div class="prose" style="margin-bottom:36px;"><p>Erylia a vécu assez longtemps pour avoir côtoyé chaque race dans ses meilleurs et ses pires moments. Elle ne juge personne sur ce qu'il est, seulement sur ce qu'il fait. C'est une position qu'elle a forgée au fil des siècles, et elle n'en a jamais dévié.</p></div>
+
+        <div class="bloc">
+          <div class="race-nom">Humanité</div>
+          <div class="prose"><p>Erylia a un respect sincère et sans condescendance pour les humains. Elle les a vus se battre, mourir, se relever et recommencer, sans la longévité qui rend les pertes plus supportables, sans la puissance magique qui rend les batailles moins inégales, avec une espérance de vie si courte que la plupart n'atteignent même pas leur trentième année. Ce qu'ils accomplissent dans ce temps limité force son admiration, même si elle ne le dit jamais directement.</p></div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="race-nom">Vampires</div>
+          <div class="prose"><p>Les Vampires sont une race qu'elle comprend mieux que la plupart ne le croiraient. Immunisés à la Corruption comme les mages, immortels, portant en eux quelque chose d'ancien lié à l'une des divinités originelles, ils ont une place dans l'histoire d'Alogryph qui mérite le respect. Ce qui l'intéresse chez eux c'est leur rapport à la durée, comme elle ils ont traversé des siècles, comme elle ils ont vu mourir des gens qu'ils aimaient tout en continuant d'exister. Ce qu'elle surveille, sans en faire une méfiance irrationnelle, c'est leur besoin de sang.</p></div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="race-nom">Nephilims</div>
+          <div class="prose"><p>C'est sur les Nephilims qu'elle a les positions les plus tranchées et les plus honnêtes. Elle sait ce qu'ils ont subi pendant l'ère du conflit, les massacres, la peur irrationnelle qu'ils inspiraient, la façon dont on a chassé des gens pour ce qu'ils étaient plutôt que pour ce qu'ils faisaient. Elle trouve ça profondément injuste, avec la froideur directe de quelqu'un qui a vécu cette période de ses propres yeux. Elle sait aussi qu'ils portent un fardeau que les autres races ne comprennent pas vraiment, être une cible permanente pour les corrompus les plus puissants simplement parce qu'ils existent. Ça force une forme de respect qu'elle n'accorde pas facilement.</p></div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="bloc">
+          <div class="race-nom">Dragonoïdes</div>
+          <div class="prose"><p>Sa vision de sa propre race est peut-être la plus compliquée de toutes. Elle ne se reconnaît pas automatiquement dans tous les Dragonoïdes qu'elle croise, et l'idée d'une solidarité basée uniquement sur les cornes et les écailles lui semble aussi creuse que n'importe quel autre préjugé. Elle sait ce que son héritage lui a donné, la puissance, la longévité, le feu, et elle en est reconnaissante sans en être orgueilleuse. Ce qu'elle attend des autres Dragonoïdes c'est exactement ce qu'elle attend de tout le monde. Qu'ils méritent la place qu'ils occupent.</p></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-histoire">
+        <div class="en-tete">
+          <div class="en-tete-num">07 / Personnage</div>
+          <div class="en-tete-titre">Histoire</div>
+          <div class="en-tete-sous">
+            <div class="en-tete-filet"></div>
+            <div class="en-tete-detail">1856 ans de mémoire</div>
+          </div>
+        </div>
+
+        <div class="histoire-wrapper">
+          <div class="flamme-wrapper" id="flammeOrange">
+            <svg class="flamme-svg" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M24 2C24 2 14 16 14 28c0 6 3 10 6 12-2-4-1-10 2-13 0 0-2 9 4 13 4-4 5-10 3-15 3 5 3 13 1 17 4-2 6-7 6-14C36 16 24 2 24 2ZM24 42c-4 3-6 8-4 14 1 4 4 6 4 6s3-2 4-6c2-6 0-11-4-14Z"/>
+            </svg>
+          </div>
+          <div class="flamme-wrapper" id="flammeViolet">
+            <svg class="flamme-svg" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M24 2C24 2 14 16 14 28c0 6 3 10 6 12-2-4-1-10 2-13 0 0-2 9 4 13 4-4 5-10 3-15 3 5 3 13 1 17 4-2 6-7 6-14C36 16 24 2 24 2ZM24 42c-4 3-6 8-4 14 1 4 4 6 4 6s3-2 4-6c2-6 0-11-4-14Z"/>
+            </svg>
+          </div>
+
+          <div class="prose" style="position:relative;z-index:1;">
+            <p>Erylia Victy est née il y a 1856 ans, dans le royaume de la flamme et de la vie, d'un père et d'une mère qui s'étaient rencontrés sur un champ de bataille et ne s'étaient plus quittés depuis. C'était une histoire assez commune dans ce royaume, où la guerre n'était pas une exception mais le tissu même du quotidien, et où les liens les plus solides se forgeaient souvent dans les cendres de quelque chose de difficile.</p>
+            <p>Car Erylia n'était pas seule. Elle avait une grande sœur, et entre elles deux s'était installée dès l'enfance une complicité que les années n'avaient fait qu'approfondir. Elles grandissaient ensemble dans un foyer où le combat était une discipline enseignée au même titre que la lecture ou le calcul, où les conversations du soir tournaient souvent autour des stratégies de la journée, des erreurs commises, de ce qu'on aurait pu faire différemment.</p>
+            <p>Ce qui la distinguait des autres enfants de son âge, c'était les flammes. Elle les avait toujours eues en elle, aussi naturellement que la respiration, aussi instinctivement que le battement de son cœur. Elle ne se souvenait pas d'un moment précis où elle les avait découvertes parce qu'il n'y en avait pas eu. Elles étaient là avant qu'elle sache ce qu'elles étaient, et quand elle comprit leur puissance, ce fut moins une révélation qu'une confirmation de ce qu'elle avait toujours su dans ses os.</p>
+            <p>La guerre cessa d'être abstraite le jour où elle prit les armes pour la première fois. Elle était jeune encore, mais elle était prête, parce qu'elle s'y était préparée avec une obstination que même ses parents trouvaient parfois déconcertante. Ce n'était pas de l'ambition. C'était plus simple et plus profond que ça. C'était la certitude que le monde allait lui demander des choses difficiles et qu'elle voulait être capable d'y répondre.</p>
+            <p>Les siècles s'écoulèrent. Elle devint une meneuse, reconnue d'abord par ceux qui combattaient à ses côtés, puis par des cercles plus larges. Sa réputation ne s'était pas construite sur des discours ou des titres, mais sur des résultats, sur des batailles gagnées que d'autres avaient déclarées perdues d'avance. Sa sœur était toujours là. Leur lien s'était transformé avec les années, deux femmes qui se connaissaient assez pour ne pas avoir besoin de tout dire.</p>
+            <p>Puis vint le Cataclysme.</p>
+            <p>Ce n'est pas un mot qu'Erylia utilise souvent. Elle préfère ne pas le prononcer du tout, parce qu'il ne dit pas ce que c'était vraiment. Un cataclysme c'est un événement, quelque chose qui arrive et qui finit. Ce qu'elle a vécu n'a pas vraiment fini. Ça a juste changé de forme.</p>
+            <p>Le royaume de la flamme fut le premier touché. Elle se battit. Elle fit tout ce qu'elle savait faire, avec ses flammes, avec sa lance, avec chaque once de ce qu'elle était. Mais ça ne suffit pas. Ça ne pouvait pas suffire. Personne n'aurait pu suffire.</p>
+            <p>Ses parents disparurent dans le chaos. Sa sœur aussi. Elle ne sait pas ce qu'il est advenu d'eux, si la Corruption les a pris, si elle les a transformés en quelque chose qu'elle ne reconnaîtrait plus, ou s'ils ont simplement disparu dans l'effondrement de tout ce qui était. Cette incertitude là est la seule chose qu'elle ne sait toujours pas comment porter, même après toutes ces années. Un mort on peut lui faire son deuil. Quelqu'un dont on ne sait rien reste ouvert, comme une question sans réponse qu'on continue de poser même quand on sait qu'elle n'en aura jamais.</p>
+            <p>Elle faisait partie de ceux qui prirent la décision de détruire les Passerelles. C'est peut-être la décision la plus lourde qu'elle ait jamais assumée. Elle n'a jamais prétendu que c'était le bon choix. Elle dit seulement que c'était le seul qu'elle pouvait faire avec ce qu'elle savait à ce moment là, et qu'elle l'a fait les yeux ouverts.</p>
+            <p>Puis ils trouvèrent Alogryph. Elle n'était pas venue chercher un refuge. Mais quand elle vit le Bastion pour la première fois, quelque chose se posa en elle, pas la paix, elle avait depuis longtemps renoncé à ce mot, mais quelque chose de plus concret. Un endroit où ce qu'elle savait faire avait encore du sens.</p>
+            <p>En quatre ans de combats quasi quotidiens, elle passa du rang de soldat inconnue à celui de Chef Avaaron. Ce n'était pas de l'ambition, c'était de l'évidence portée par chaque bataille qu'elle remportait, chaque décision qu'elle prenait sous pression et qui se révélait juste.</p>
+            <p>Cela fait deux cents ans qu'elle est Chef Avaaron. Deux cents ans pendant lesquels elle a connu des victoires dont le nom résonne encore dans les couloirs du Bastion Central. Elle a aussi connu des défaites. Elle les porte toutes, sans les exposer, avec la même froideur méthodique qu'elle met à tout le reste.</p>
+            <p>Et quelque part dans ces deux cents ans, il y a eu un duel. Elle n'en parle pas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-secret">
+        <div class="tache tache-1"></div>
+        <div class="tache tache-2"></div>
+        <div class="tache tache-3"></div>
+
+        <div class="secret-titre">Ce que personne ne sait</div>
+        <div class="secret-sep"></div>
+        <div class="secret-sous">Dossier — Accès restreint</div>
+
+        <div class="secret-texte">
+          <p>Je ne me <span class="decale-1">souviens</span> pas de ce soir-là. C'est ce qui me fait le plus <span class="decale-2">peur</span>.</p>
+          <p>À définir — récit de la contamination d'Erylia, à la première personne. Ce qu'elle a ressenti, ce qu'elle ne comprend pas encore, les premiers signes qu'elle a ignorés ou rationalisés. L'histoire du duel qui a tout changé.</p>
+          <p>Ce <span class="decale-3">texte</span> n'existe pas sur la fiche publique. Il n'existera peut-être jamais pour la plupart des membres du serveur.</p>
+          <p>Mais <span class="decale-1">toi</span>, tu as trouvé.</p>
+        </div>
+
+        <div class="secret-avert">
+          Ce contenu est réservé à l'administration et aux joueurs ayant découvert l'easter egg. Ne pas utiliser ces informations en jeu sans validation des admins — méta RP interdit.
+        </div>
+      </section>
+
+    </div>
+
+    <div class="col-img" id="colDroite">
+      <div class="col-img-inner" id="imgsDroite"></div>
+      <div class="col-fade-gauche"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const imagesParPage = {
+  identite:     { gauche: ['reed2.jpg','reed3.jpg'], droite: ['reed1.jpg','reed4.jpg'] },
+  physique:     { gauche: ['reed5.jpg','reed7.jpg'], droite: ['reed6.jpg','reed8.jpg'] },
+  psychologie:  { gauche: ['reed9.webp','reed11.jpg'], droite: ['reed10.png','reed12.jpg'] },
+  magie:        { gauche: ['reed14.jpg','reed15.jpg'], droite: ['reed13.jpg','reed16.jpg'] },
+  personnalite: { gauche: ['reed18.png','reed20.jpg'], droite: ['reed17.jpg','reed19.png'] },
+  relations:    { gauche: ['reed3.jpg','reed7.jpg'], droite: ['reed5.jpg','reed9.jpg'] },
+  histoire:     { gauche: ['reed21.png','reed23.png'], droite: ['reed22.jpg','reed8.jpg'] },
+  secret:       { gauche: ['#.png','#.png'], droite: ['#.png','#.png'] },
+};
+
+function makeImgs(liste) {
+  return liste.map(src =>
+    `<div><img src="${src}" alt="" onerror="this.style.display='none'"></div>`
+  ).join('');
+}
+
+function setColImages(id, imgs) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.opacity = '0';
+  setTimeout(() => {
+    el.innerHTML = makeImgs(imgs);
+    el.style.opacity = '1';
+  }, 380);
+}
+
+function ouvrirFiche() {
+  const acc = document.getElementById('accueil');
+  const fiche = document.getElementById('fiche');
+  acc.classList.add('rideau');
+  setColImages('imgsGauche', imagesParPage.identite.gauche);
+  setColImages('imgsDroite', imagesParPage.identite.droite);
+  setTimeout(() => fiche.classList.add('visible'), 60);
+  setTimeout(() => acc.style.display = 'none', 1050);
+  const audio = document.getElementById('ambiance');
+  audio.volume = 0.18;
+  audio.play().catch(() => {});
+}
+
+function retourAccueil() {
+  const acc = document.getElementById('accueil');
+  const fiche = document.getElementById('fiche');
+  acc.style.display = '';
+  acc.style.transform = 'translateY(-100%)';
+  acc.classList.remove('rideau');
+  fiche.classList.remove('visible');
+  setTimeout(() => {
+    acc.style.transition = 'transform 0.7s cubic-bezier(0.76,0,0.24,1)';
+    acc.style.transform = 'translateY(0)';
+  }, 20);
+  setTimeout(() => {
+    acc.style.transition = '';
+  }, 750);
+}
+
+function afficherPage(id, elem) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('actif'));
+  document.getElementById('page-' + id).classList.add('active');
+  elem.classList.add('actif');
+  const imgs = imagesParPage[id] || imagesParPage.identite;
+  setColImages('imgsGauche', imgs.gauche);
+  setColImages('imgsDroite', imgs.droite);
+  document.querySelector('.zone-centre').scrollTop = 0;
+}
+
+function setVolume(val) {
+  document.getElementById('ambiance').volume = parseFloat(val);
+}
+
+let dragging = null, offX = 0, offY = 0, secretRevele = false;
+
+function initDrag(id) {
+  const el = document.getElementById(id);
+  el.addEventListener('mousedown', e => {
+    dragging = el;
+    const r = el.getBoundingClientRect();
+    offX = e.clientX - r.left; offY = e.clientY - r.top;
+    el.style.position = 'absolute';
+    e.preventDefault();
+  });
+  el.addEventListener('touchstart', e => {
+    dragging = el;
+    const t = e.touches[0];
+    const r = el.getBoundingClientRect();
+    offX = t.clientX - r.left; offY = t.clientY - r.top;
+    el.style.position = 'absolute';
+    e.preventDefault();
+  }, { passive: false });
+}
+
+document.addEventListener('mousemove', e => { if (dragging) moveEl(e.clientX, e.clientY); });
+document.addEventListener('touchmove', e => { if (dragging) { moveEl(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); } }, { passive: false });
+document.addEventListener('mouseup', () => { dragging = null; });
+document.addEventListener('touchend', () => { dragging = null; });
+
+function moveEl(cx, cy) {
+  const wrap = document.querySelector('.histoire-wrapper');
+  if (!wrap) return;
+  const r = wrap.getBoundingClientRect();
+  dragging.style.left = (cx - r.left - offX) + 'px';
+  dragging.style.top  = (cy - r.top  - offY) + 'px';
+  dragging.style.bottom = 'auto'; dragging.style.right = 'auto';
+  if (!secretRevele) checkFusion();
+}
+
+function checkFusion() {
+  const o = document.getElementById('flammeOrange').getBoundingClientRect();
+  const v = document.getElementById('flammeViolet').getBoundingClientRect();
+  const cx1 = o.left + o.width/2, cy1 = o.top + o.height/2;
+  const cx2 = v.left + v.width/2, cy2 = v.top + v.height/2;
+  if (Math.sqrt((cx1-cx2)**2 + (cy1-cy2)**2) < 32) {
+    secretRevele = true;
+    ['flammeOrange','flammeViolet'].forEach(id => {
+      const el = document.getElementById(id);
+      el.style.color = '#6b0f0f';
+      el.style.filter = 'drop-shadow(0 0 18px #6b0f0f)';
+    });
+  }
+}
+
+initDrag('flammeOrange');
+initDrag('flammeViolet');
+</script>
+</body>
+</html>
